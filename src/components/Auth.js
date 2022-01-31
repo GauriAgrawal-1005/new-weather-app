@@ -1,14 +1,19 @@
-import React from "react";
-import LoginForm from "./LoginForm";
+import React, { useState } from "react";
+import LandingPage from "./LandingPage";
 import Dashboard from "./Dashboard";
-import { useUserContext } from "../context/userContext";
+import { UserContext } from "../contexts/UserContext";
+import LoginForm from "./LoginForm";
 
 const Auth = () => {
-    // const {user} = useUserContext();
-    const user = false;
+    const [name, setName] = useState("");
+    const [showProfile, setShowProfile] = useState(false);
     return(
         <>
-            {user ? <Dashboard /> : <LoginForm />}
+            {console.log('Auth page')};
+            
+            <UserContext.Provider value={{name, setName, setShowProfile}}>
+                {showProfile ? <Dashboard /> : <LoginForm />}
+            </UserContext.Provider>
         </>
     )
 }

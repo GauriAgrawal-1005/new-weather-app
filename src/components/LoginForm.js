@@ -1,33 +1,28 @@
-import React, { useState } from "react";
-import { useUserContext } from "../context/userContext";
-// import { useUserContext } from "../Context/userContext";
-// import Dashboard from "./Dashboard";
+import React, { useState, useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
+import '../App.css';
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
 
-    const [name, setName] = useState("");
+    // const navigate = useNavigate();
+
+    const {name, setName, setShowProfile} = useContext(UserContext);
+   
     const [email, setEmail] = useState("");
     const [password,setPassword] = useState('');
 
-    const {logIn} = useUserContext();
+    
 
-    const handleSubmit=(e)=>{
-        e.preventDefault()
-        const newUser = {name: name, email: email, password: password};
-        logIn(newUser.name);
-        console.log(newUser.name)
-
-        localStorage.setItem('New user email', newUser.email);
-        localStorage.setItem('New user password', newUser.password);
+    const handleClick=()=>{
+        setShowProfile(true);
         
-        console.log(newUser);
     }
 
     return(
-        <div className="ui container">
+        <div id="main">
             
-            <form action="submit" onSubmit={handleSubmit}>
-            <div>
+                <div className="input-parent">
                     <label htmlFor="name">Name</label>
                     <input 
                         type='text' 
@@ -39,7 +34,7 @@ const LoginForm = () => {
                     />
                     
                 </div>
-                <div>
+                <div className="input-parent">
                     <label htmlFor="email">Email</label>
                     <input 
                         type='text' 
@@ -52,7 +47,7 @@ const LoginForm = () => {
                     
                 </div>
                 
-                <div>
+                <div className="input-parent">
                     <label htmlFor="password">Password</label>
                     <input 
                         type='password' 
@@ -65,10 +60,9 @@ const LoginForm = () => {
                     />
                 </div>
 
-                <button type="submit">Login</button>
-                {/* <Dashboard ></Dashboard> */}
+                <button type="submit" onClick={handleClick}>Login</button>
                 
-            </form>
+
         </div>
     )
 
