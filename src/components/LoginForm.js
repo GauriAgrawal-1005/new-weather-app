@@ -1,12 +1,11 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import '../App.css';
-import { useNavigate } from "react-router-dom";
+
 
 const LoginForm = () => {
 
-    // const navigate = useNavigate();
-
+    
     const {name, setName, setShowProfile} = useContext(UserContext);
    
     const [email, setEmail] = useState("");
@@ -16,7 +15,7 @@ const LoginForm = () => {
 
     const handleClick=()=>{
         setShowProfile(true);
-        
+        localStorage.setItem("isAuthenticated", "true");
     }
 
     return(

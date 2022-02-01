@@ -6,7 +6,7 @@ import { UserContext } from '../contexts/UserContext';
 
 const Dashboard =() => {
 
-    const {name}=useContext(UserContext);
+    const {name, showProfile}=useContext(UserContext);
 
     const [city, setCity] = useState("")
     const [data, setData] = useState({
@@ -21,7 +21,7 @@ const Dashboard =() => {
     })
 
     const handleSubmit = () => {
-        axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&&units=metric&&appid=efc593b34ba5889a468a4e80e9b0a6a5`)
+        axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&&units=metric&&appid=2e51b6c03e0fc2a7f325c730588dcfbb`)
             .then((response) => {
                 setData({
                     description: response.data.weather[0].description,
@@ -42,9 +42,16 @@ const Dashboard =() => {
             })
     }
 
+    const handleLogout = () => {
+        localStorage.clear();
+        window.location.pathname = "/login";
+    }
+
     return (
         <>
             <div style={{backgroundColor: "lightblue"}}>
+                {/* {!showProfile && (<button>Logout</button>)} */}
+                <button onClick={handleLogout}>Logout</button>
                 <h1 style={{backgroundColor: "lightyellow"}}>Welcome {name}</h1>
                 <h1 style={{backgroundColor: "lightyellow"}}>Weather Forecast!!</h1>
                 <h2 >Get all your essential weather data for a specific location.</h2>
