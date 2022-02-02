@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import "../App.css"
+// import { UserContext } from "../contexts/UserContext";
+// import { useContext } from "react/cjs/react.development";
 
 const LandingPage = () => {
     const city='Jhansi';
@@ -26,10 +28,14 @@ const LandingPage = () => {
     },[])
     
     return(
-            <div>
-                <Link to="/login">
-                    <button style={{width:'5%'}}>Login</button>
-                </Link>
+            <div className="landingpage">
+                <div >
+                    <p>Click to login to the dashboard</p>
+                    <Link to="/login">
+                        <button style={{width:'10%'}}>Login</button>
+                    </Link>
+                </div>
+                
                 
                 <h1>Today's Weather</h1>
                 <div>
