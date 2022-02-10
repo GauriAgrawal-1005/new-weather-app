@@ -1,33 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { UserContext } from "../contexts/UserContext";
+import UserState from "../contexts/Context";
 import '../App.css';
 
 
 const LoginForm = () => {
 
-    
-    // const {name, setName, setShowProfile} = useContext(UserContext);
+    const {name, setName} = UserState();
    
     const [email, setEmail] = useState("");
     const [password,setPassword] = useState('');
-    const [name, setName] = useState("");
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
-    // const [showProfile, setShowProfile] = useState(false);
-
     
     let navigate = useNavigate();
 
     const handleSubmit=()=>{
-        // setShowProfile(true);
         setFormErrors(validate(name, email, password))
         setIsSubmit(true);
-        
     }
 
     useEffect(() => {
-        console.log(formErrors);
         if(Object.keys(formErrors).length === 0 && isSubmit){
             console.log(name, email, password);
             localStorage.setItem( "loggedInUser",JSON.stringify({UserName: name, UserEmail: email, UserPassword: password}));

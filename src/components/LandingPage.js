@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import "../App.css"
-// import { UserContext } from "../contexts/UserContext";
-// import { useContext } from "react/cjs/react.development";
 
 const LandingPage = () => {
     const city='Jhansi';

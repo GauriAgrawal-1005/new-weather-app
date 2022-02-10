@@ -1,14 +1,13 @@
 import React, { useState} from 'react';
 import axios from 'axios';
 import ShowTemp from './ShowTemp';
-// import { UserContext } from '../contexts/UserContext';
+import  UserState from '../contexts/Context';
 
 
 const Dashboard =() => {
 
-    // const {name}=useContext(UserContext);
+    const {name} = UserState();
 
-    const {UserName} = JSON.parse(localStorage.getItem("loggedInUser"));
     const [city, setCity] = useState("")
     const [data, setData] = useState({
         description: "",
@@ -34,7 +33,7 @@ const Dashboard =() => {
                     sunset: response.data.sys.sunset,
                     country: response.data.sys.country,
                 })
-                // console.log(response.data);
+                
             })
             .catch((error) => {
                 if(error.status === 404){
@@ -51,9 +50,9 @@ const Dashboard =() => {
     return (
         <>
             <div id="main" >
-                {/* {!showProfile && (<button>Logout</button>)} */}
+                
                 <button onClick={handleLogout}>Logout</button>
-                <h1 >Welcome {UserName} </h1>
+                <h1 >Welcome {name} </h1>
                 <h1 >Weather Forecast!!</h1>
                 <h2 >Get all your essential weather data for a specific location.</h2>
                 <div >
