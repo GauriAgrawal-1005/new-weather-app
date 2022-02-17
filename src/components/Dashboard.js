@@ -36,9 +36,7 @@ const Dashboard =() => {
                 
             })
             .catch((error) => {
-                if(error.status === 404){
-                    <h1>City Not found</h1>
-                }
+                console.log("Error", error);
             })
     }
 
